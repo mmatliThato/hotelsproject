@@ -1,0 +1,110 @@
+ <div class="container-fluid mb-5">
+   <h1>Boooking Form</h1>
+   
+<form >
+
+
+  <hr />
+
+
+  <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" class="form-control"  name ="fullname" [(ngModel)]="model.fullname" >
+      <small>fullname is required</small>
+  </div>
+  
+  <div class="form-group">
+      <label>Email</label>
+      <input type="text" class="form-control" name="email" [(ngModel)]="model.email">
+      <small>enail is required</small>
+  </div>
+
+  <div class="form-group">
+      <label>Phone Number</label>
+      <input type="tel"  #phone="ngModel" pattern="^\d{10}$" 
+      [class.is-invalid]="phone.invalid && phone.touched" class= "form-control" name="phonenumber" [(ngModel)]="model.phonenumber" >
+      <small>phone number is required</small>
+
+  </div>
+
+  <div class="form-group">
+      <label>Start Date</label>
+      <input type="date" class="form-control" name="startdate" [(ngModel)]="model.startdate">
+      <small>startdate is required</small>
+  </div>
+
+  <div class="form-group">
+      <label>End Date</label>
+      <input type="date" class="form-control" name="enddate"  [(ngModel)]="model.enddate" > 
+      <small>enddate is required</small>
+  </div>
+  <div class="form-group">
+        <label>Gender</label>
+        <select class="custom-select"  name="gender" [(ngModel)]="model.gender" >
+  <option value="">gender</option>
+  <option *ngFor="let gender of gender">{{ gender }}</option>
+  <small>gender is required</small>
+  
+        </select>
+
+        
+    </div>
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default" data-target="#thato" data-toggle="modal" (click) ="addBooooking()">Save</button>
+
+</div>
+  
+
+ </div>
+
+
+ <!-- modal -->
+
+ <div class="modal fade bd-example-modal-xl" id="thato" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+                <div class="modal-header">
+                        <h5 class="modal-title">Booking information</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                <br>
+
+                <table class="table table-responsive ">
+                    <thead>
+                      <tr>
+                        <th width=400>fullname</th>
+                        <th width=400>email</th>
+                        <th width=400>phonenumber</th>
+                        <th width=400>startdate</th>
+                        <th width=400>enddate</th>
+                        <th width=400>gender</th>
+                        <th width=200>action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                
+                      <tr *ngFor="let booking of bookings; let i=index">
+                    
+                        <td> {{booking.fullname}}</td>
+                        <td> {{booking.email}}</td>
+                        <td> {{booking.phonenumber}}</td>
+                        <td> {{booking.startdate}}</td>
+                        <td> {{booking.enddate}}</td>
+                        <td> {{booking.gender}}</td>
+                    
+                        <td>
+                         
+                            <button class="btn btn-danger" (click)="deleteBooking(i)">Delete</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                
+                
+                  </table>
+          </div>
+        </div>
+        
+      </div>
